@@ -1,2 +1,2 @@
 # tour
-Tour planner for independent music actors
+Tour planner for independent music people
