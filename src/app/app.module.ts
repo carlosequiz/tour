@@ -6,20 +6,35 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
+import { AuthenticationService } from './services/authentication.service';
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { environment } from 'src/environments/environment';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { HeaderMenuComponent } from './header-menu/header-menu.component'
+
+
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, HeaderMenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
+    AuthenticationService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
